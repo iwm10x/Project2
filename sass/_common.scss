@@ -8,13 +8,10 @@
     padding: 0;
 }
 
-html {
-    font-size: .8rem;
-}
-
 body {
     font-family: 'Radio Canada', 'Noto Sans JP', sans-serif;
     padding-top: 64px;
+    font-size: .8rem;
 
     @include mq {
         padding-top: 0;
@@ -256,7 +253,7 @@ header {
         display: block;
         transform: translateY(-6%);
         max-width: 100%;
-        width: 80%;
+        width: 80vw;
 
         @include mq {
             height: 80vh;
