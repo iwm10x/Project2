@@ -274,7 +274,6 @@ header {
         }
 
         div p {
-            display: inline-flex;
             position: relative;
             z-index: 0;
             padding: .1em;
@@ -294,12 +293,12 @@ header {
         }
 
         .mv-text-date {
-            font-size: max(1vw, 1.2rem);
+            font-size: 1.2rem;
         }
 
         .mv-text-eng,
         .mv-text-jp {
-            font-size: max(3.2vw, 2rem);
+            font-size: 2rem;
         }
     }
 

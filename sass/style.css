@@ -247,7 +247,6 @@ header .header-nav ul li a:hover::after {
   }
 }
 .main-visual .main-visual-text div p {
-  display: inline-flex;
   position: relative;
   z-index: 0;
   padding: 0.1em;
@@ -265,11 +264,11 @@ header .header-nav ul li a:hover::after {
   top: 0;
 }
 .main-visual .main-visual-text .mv-text-date {
-  font-size: max(1vw, 1.2rem);
+  font-size: 1.2rem;
 }
 .main-visual .main-visual-text .mv-text-eng,
 .main-visual .main-visual-text .mv-text-jp {
-  font-size: max(3.2vw, 2rem);
+  font-size: 2rem;
 }
 
 .main-backnumbers {
