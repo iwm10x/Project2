@@ -253,6 +253,7 @@ header {
     }
 
     img {
+        display: block;
         transform: translateY(-6%);
         max-width: 100%;
         width: min(80vw, auto);
