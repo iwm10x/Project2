@@ -1,0 +1,418 @@
+@use "./mixins" as *;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: .8rem;
+}
+
+body {
+    font-family: 'Radio Canada', 'Noto Sans JP', sans-serif;
+    padding-top: 64px;
+
+    @include mq {
+        padding-top: 0;
+    }
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 64px;
+    width: 100%;
+    z-index: 1;
+
+    @include mq {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 200px;
+    }
+
+    .header-logo {
+        width: 140px;
+        margin: 0 0 0 24px;
+
+        @include mq {
+            width: 160px;
+            margin: 40px auto 80px;
+        }
+    }
+
+    .header-logo img {
+        display: block;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .nav-container {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #fff;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        transform: translateX(100%);
+        transition: .8s cubic-bezier(.72, .04, .16, .96);
+
+        @include mq {
+            position: static;
+            transform: none;
+            transition: none;
+        }
+
+        .header-sns {
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            padding: 2rem 0;
+
+            a {
+                margin: 0 8px;
+            }
+
+            @include mq {
+                flex-grow: 0;
+            }
+        }
+    }
+
+    // .nav-container
+
+
+    .header-nav-check {
+        display: none;
+    }
+
+    .header-nav-check:checked~.nav-container {
+        transform: translateX(0);
+    }
+
+    .header-nav-check:checked~.header-nav-label span {
+        transform: scaleX(0);
+    }
+
+    .header-nav-check:checked~.header-nav-label::before {
+        transform: translateY(0) rotate(45deg);
+    }
+
+    .header-nav-check:checked~.header-nav-label::after {
+        transform: translateY(0) rotate(-45deg);
+    }
+
+    .header-nav-label {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        right: 12px;
+        top: 12px;
+        height: 40px;
+        z-index: 10;
+
+        span {
+            transform-origin: left center;
+        }
+
+        &::before {
+            transform: translateY(-8px)
+        }
+
+        &::after {
+            transform: translateY(8px);
+        }
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: calc(50% - 1px);
+        }
+
+        span,
+        &::before,
+        &::after {
+            height: 1px;
+            width: 30px;
+            background-color: black;
+            transition: .4s;
+        }
+
+        @include mq {
+            display: none;
+        }
+
+    }
+
+    .header-nav {
+        display: flex;
+        flex-grow: 2;
+        justify-content: center;
+        align-items: center;
+
+        @include mq {
+            position: static;
+            flex-grow: 1;
+            align-items: start;
+            justify-content: start;
+            width: 80%;
+            margin: 0 auto;
+            background-color: transparent;
+        }
+
+        ul {
+            list-style: none;
+            text-align: center;
+
+            @include mq {
+                text-align: start;
+            }
+
+            li {
+                margin-bottom: 2em;
+
+                @include mq {
+                    margin-bottom: 1.6em;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                a {
+                    position: relative;
+                    display: inline-block;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    color: black;
+                    padding-bottom: 2px;
+                    font-size: 1.2rem;
+
+                    @include mq {
+                        font-size: 1rem;
+                    }
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        bottom: 0;
+                        left: 0;
+                        height: 2px;
+                        background-color: black;
+                        transform: scaleX(0);
+                        transform-origin: left center;
+                        transition: transform .6s cubic-bezier(.7, .04, .16, .96);
+                    }
+
+                    &:hover::after {
+                        transform-origin: left center;
+                        transform: scaleX(1);
+                    }
+                }
+            }
+        }
+
+        //.header-nav ul
+    }
+
+    // .header-nav
+
+}
+
+//header
+
+.main-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../img/mv-bg@2x.jpg) no-repeat center center;
+    background-size: cover;
+    height: calc(100vh - 60px);
+
+    @include mq {
+        margin-left: 200px;
+        height: 100vh;
+    }
+
+    img {
+        transform: translateY(-6%);
+        max-width: 100%;
+        width: min(80vw, auto);
+
+        @include mq {
+            height: 80vh;
+            max-height: 700px;
+            width: auto;
+            transform: translateY(0);
+        }
+    }
+
+    .main-visual-text {
+        position: absolute;
+        left: 4%;
+        bottom: 48px;
+
+        @include mq {
+            left: 4%;
+            bottom: 40px;
+        }
+
+        div p {
+            display: inline-flex;
+            position: relative;
+            z-index: 0;
+            padding: .1em;
+            overflow: hidden;
+            margin-bottom: 8px;
+
+            &::after {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                background-color: #fff;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+            }
+        }
+
+        .mv-text-date {
+            font-size: max(1vw, 1.2rem);
+        }
+
+        .mv-text-eng,
+        .mv-text-jp {
+            font-size: max(3.2vw, 2rem);
+        }
+    }
+
+    //.main-visual-text
+}
+
+//.main-visual
+
+.main-backnumbers {
+    background-color: #f8f8f8;
+    margin-left: 0;
+
+    @include mq {
+        margin-left: 200px;
+    }
+
+
+    .mb-heading {
+        padding: 2em 1em;
+        font-size: .8rem;
+        font-weight: normal;
+        text-transform: uppercase;
+
+        @include mq {
+            padding: 3em;
+        }
+
+        &::first-line {
+            font-size: 1.2rem;
+
+            @include mq {
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+    .mb-list {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+
+        li {
+            flex-basis: 100%;
+            padding: 40px 24px;
+            background-color: #f8f8f8;
+
+            @include mq {
+                flex-basis: 50%;
+                padding: 64px 40px;
+            }
+
+            a {
+                text-decoration: none;
+                color: black;
+
+                img {
+                    display: block;
+                    width: 60%;
+                    max-width: 300px;
+                    margin: 0 auto;
+                    box-shadow:
+                        1px 1px 6px 0 rgba(0, 0, 0, .25),
+                        0 0 20px 0 rgba(0, 0, 0, .15);
+                }
+
+                p {
+                    margin-top: 4em;
+
+                    span {
+                        display: block;
+                    }
+
+                    .date,
+                    .num {
+                        margin-bottom: .4em;
+                        font-weight: 300;
+                    }
+
+                    .title {
+                        font-size: 1.4em;
+                    }
+                }
+            }
+        }
+
+        .mb-item-101 {
+            background-color: #ECF4F9;
+        }
+
+        .mb-item-100 {
+            background-color: #FBF3D2;
+        }
+
+        .mb-item-99 {
+            background-color: #f9f2eb;
+        }
+
+        .mb-item-98 {
+            background-color: #fae8c2;
+        }
+
+        .mb-item-97 {
+            background-color: #e2efe7;
+        }
+
+        .mb-item-96 {
+            background-color: #f2f5fb;
+        }
+    }
+
+    //mb-list
+}
+
+//.main-backnumbers
